@@ -4,18 +4,18 @@ defmodule OAutherTest do
   test "HMAC-SHA1 signature" do
     creds = OAuther.credentials(consumer_secret: "kd94hf93k423kf44", token_secret: "pfkkdhi9sl3r4s00", consumer_key: "dpf43f3p2l4k3l03", token: "nnch734d00sl2jdk")
     params = protocol_params(creds)
-    assert signature(params, creds, "/photos") == "tR3+Ty81lMeYAr/Fid0kMTYa/WM="
+    assert signature(params, creds, "/photos") == "16DDt0Q6wqlGr/PbOnPh6LnxyY0="
   end
 
   test "RSA-SHA1 signature" do
     creds = OAuther.credentials(method: :rsa_sha1, consumer_secret: fixture_path("private_key.pem"), consumer_key: "dpf43f3p2l4k3l03")
     params = protocol_params(creds)
-    assert signature(params, creds, "/photos") == "cyZ9hTJnRfkOnF5+OzxXWKKG+hRY+/esxdQAluJem1RlHkZQRsFEevOS5x+A1ZoS+aYlTU3xdHkEKIb/+xuqaavAUFVaIF/5448XsXqSTJomvpoC1c7yw5ArNZnPRLYwK3XYHaIr5FHXbiCG/ze093i2MpsusQU6Shn8lGJNMWE="
+    assert signature(params, creds, "/photos") == "rg7JWzaxn0bLwynemCJ6K1IEPgTjX0Cg5xjpkWTDtrJfuPkX5w6YoJljeBo4+qNdojEYSfmOHXEYLIYmcm0+Di35KqJY2PfQVwe0EdEfaTzCBXYkauFhfOeoxSACID8FKJjN0N9UXXyYlLeeRnY7mb3gEHQhNbocqidchti1ASE="
 
     private_key = File.read!(fixture_path("private_key.pem"))
     creds = OAuther.credentials(method: :rsa_sha1, consumer_secret: private_key, consumer_key: "dpf43f3p2l4k3l03")
     params = protocol_params(creds)
-    assert signature(params, creds, "/photos") == "cyZ9hTJnRfkOnF5+OzxXWKKG+hRY+/esxdQAluJem1RlHkZQRsFEevOS5x+A1ZoS+aYlTU3xdHkEKIb/+xuqaavAUFVaIF/5448XsXqSTJomvpoC1c7yw5ArNZnPRLYwK3XYHaIr5FHXbiCG/ze093i2MpsusQU6Shn8lGJNMWE="
+    assert signature(params, creds, "/photos") == "rg7JWzaxn0bLwynemCJ6K1IEPgTjX0Cg5xjpkWTDtrJfuPkX5w6YoJljeBo4+qNdojEYSfmOHXEYLIYmcm0+Di35KqJY2PfQVwe0EdEfaTzCBXYkauFhfOeoxSACID8FKJjN0N9UXXyYlLeeRnY7mb3gEHQhNbocqidchti1ASE="
   end
 
   test "PLAINTEXT signature" do
@@ -27,7 +27,7 @@ defmodule OAutherTest do
   test "signature with query params" do
     creds = OAuther.credentials(consumer_secret: "kd94hf93k423kf44", token_secret: "pfkkdhi9sl3r4s00", consumer_key: "dpf43f3p2l4k3l03", token: "nnch734d00sl2jdk")
     params = protocol_params(creds)
-    assert signature(params, creds, "/photos?size=large") == "dzTFIxhRqhwfFqoXYgo4+hoPr2M="
+    assert signature(params, creds, "/photos?size=large") == "75PnucagDoUF3Ilr5SuN7Lpa12g="
   end
 
   test "Authorization header" do
