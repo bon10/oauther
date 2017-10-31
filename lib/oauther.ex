@@ -2,7 +2,7 @@ defmodule OAuther do
   defmodule Credentials do
     defstruct [
       :consumer_key, :consumer_secret,
-      :token, :token_secret, method: :hmac_sha1
+      :token, :token_secret, :callback, :verifier, method: :hmac_sha1
     ]
 
     @type t :: %__MODULE__{
@@ -45,7 +45,9 @@ defmodule OAuther do
      {"oauth_nonce", nonce()},
      {"oauth_signature_method", signature_method(creds.method)},
      {"oauth_timestamp", timestamp()},
-     {"oauth_version", "1.0"}
+     {"oauth_version", "1.0"},
+     {"oauth_callback", creds.callback},
+     {"oauth_verifier", creds.verifier}
      | maybe_put_token(params, creds.token)]
   end
 
