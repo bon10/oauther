@@ -77,7 +77,7 @@ params = OAuther.sign("post", url, [], creds)
 # => {:ok,
 # "oauth_token=CCCC&oauth_callback_confirmed=true"}
 oauth_token
-"oauth_token=CCCC&oauth_callback_confirmed=true"
+#"oauth_token=CCCC&oauth_callback_confirmed=true"
 ```
 
 ### (Step3) Get params of verifier
